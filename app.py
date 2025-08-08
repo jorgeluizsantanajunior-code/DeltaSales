@@ -82,11 +82,11 @@ def main():
     # Lógica de navegação
     if st.session_state.page == 0:
         mostrar_contexto()
-        if st.button("Próximo"):
+        if st.button("Próximo", key="next_button"):
             st.session_state.page = 1  # Muda para a seção de escolhas
     elif st.session_state.page == 1:
         mostrar_escolhas()
-        if st.button("Anterior"):
+        if st.button("Anterior", key="previous_button"):
             st.session_state.page = 0  # Volta para a seção de contexto
 
 # Executando a função principal
