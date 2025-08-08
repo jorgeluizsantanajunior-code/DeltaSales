@@ -7,7 +7,7 @@ def fmt(x):
 # Seção de Contexto
 def mostrar_contexto():
   
-    st.image("pagina1.jpg", caption="Bem-vindo à atividade da Civeta Nobre Importações!", use_column_width=True)
+    st.image("pagina1.png", caption="Bem-vindo à atividade da Civeta Nobre Importações!", use_column_width=True)
     
     st.subheader("Sobre a empresa")
     st.write("""
