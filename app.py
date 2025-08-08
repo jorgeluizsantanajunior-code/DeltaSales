@@ -7,7 +7,9 @@ def fmt(x):
 # Seção de Contexto
 def mostrar_contexto():
   
-    st.image("pagina1.png", caption="Bem-vindo à atividade da Civeta Nobre Importações!", use_column_width=True)
+    st.image("pagina1.png", caption="Bem-vindo à atividade da Civeta Nobre Importações!", use_container_width=True)
+    
+    st.title("Bem-vindo à atividade da Civeta Nobre Importações!")
     
     st.subheader("Sobre a empresa")
     st.write("""
@@ -71,14 +73,21 @@ def mostrar_escolhas():
         else:
             st.error("Por favor, insira seu nome e e-mail para enviar as escolhas.")
 
-# Função principal que vai decidir qual página mostrar
+# Função principal que controla a navegação
 def main():
-    page = st.selectbox("Escolha uma opção", ["Contexto", "Fazer Escolhas"])
-
-    if page == "Contexto":
+    # Inicializando a seção de navegação
+    if 'page' not in st.session_state:
+        st.session_state.page = 0  # Começa na seção de contexto
+    
+    # Lógica de navegação
+    if st.session_state.page == 0:
         mostrar_contexto()
-    else:
+        if st.button("Próximo"):
+            st.session_state.page = 1  # Muda para a seção de escolhas
+    elif st.session_state.page == 1:
         mostrar_escolhas()
+        if st.button("Anterior"):
+            st.session_state.page = 0  # Volta para a seção de contexto
 
 # Executando a função principal
 if __name__ == "__main__":
