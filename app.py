@@ -1,16 +1,23 @@
 import streamlit as st
 import pandas as pd
 
-# Criando os dados da tabela
+# Criando os dados da tabela (agora com as localizações como colunas)
 dados = {
-    "Localização": ["Serra", "Praia do Canto"],
-    "Aluguel Mensal (R\$)": [5000, 20000],
-    "Investimento em Móveis (R\$)": [60000, 100000],
-    "Vida Útil dos Móveis (anos)": [10, 10],
-    "Condições de Pagamento dos Móveis": ["12 parcelas mensais", "12 parcelas mensais"],
-    "Fatia de Mercado no Mês 1": ["20%", "60%"],
-    "Fatia de Mercado no Mês 2": ["40%", "70%"],
-    "Fatia de Mercado no Mês 3": ["60%", "80%"],
+    "Categoria": [
+        "Aluguel Mensal",
+        "Investimento em Móveis",
+        "Vida Útil dos Móveis (anos)",
+        "Condições de Pagamento dos Móveis",
+        "Fatia de Mercado no Mês 1",
+        "Fatia de Mercado no Mês 2",
+        "Fatia de Mercado no Mês 3"
+    ],
+    "Serra": [
+        "R$ 5.000", "R$ 60.000", 10, "Parcelado em 12 vezes", "20%", "40%", "60%"
+    ],
+    "Praia do Canto": [
+        "R$ 20.000", "R$ 100.000", 10, "Parcelado em 12 vezes", "60%", "70%", "80%"
+    ]
 }
 
 # Criando um DataFrame
@@ -136,6 +143,9 @@ def mostrar_contexto():
     para outro. Sendo assim, a taxa de juros do cheque especial é calculada sobre o saldo negativo do mês em que o caixa estiver negativo,
     e incorporada a esse saldo. Ou seja, se ao final de janeiro o caixa fechar em -10.000 antes dos juros, o saldo final do caixa de janeiro
     após o juros será de -11.500. O mesmo para os demais meses.
+    """)
+    st.write("""
+    Similarmente, a depreciação dos móveis leva em consideração os três meses completos.
     """)
     
     st.write("""
