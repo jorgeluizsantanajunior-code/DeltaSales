@@ -15,7 +15,8 @@ def mostrar_contexto():
     st.write("""
     A empresa **Civeta Nobre Importações** está sendo criada com o objetivo de comercializar o famoso café civeta, 
     conhecido por seu processo único de produção na Indonésia. A empresa estabeleceu um contato direto com um fornecedor 
-    no país asiático e tem acesso a um preço competitivo de importação.
+    no país asiático e tem acesso a um preço competitivo de importação. Nessa parte da atividade, seu objetivo será tomar
+    decisões que resultem na maximização do lucro líquido da empresa nos seus três primeiros meses de funcinamento.
     """)
     
     st.subheader("O Produto")
@@ -27,7 +28,7 @@ def mostrar_contexto():
     st.subheader("Estudo de Mercado")
     st.write("""
     Após uma análise de mercado, a Civeta Nobre concluiu que, se conseguisse atingir todo o público potencial da cidade, 
-    teria capacidade de vender até 100 pacotes por mês, com um preço de R$ 4.000 por pacote (1kg). Esse número representa o 
+    teria capacidade de vender até 100 pacotes por mês, com um preço de R\$ 4.000 por pacote (1kg). Esse número representa o 
     limite máximo de mercado em Vitória, considerando o perfil e a demanda do público local.
     """)
     st.write("""
@@ -37,7 +38,7 @@ def mostrar_contexto():
     st.write("""
     Além disso, a empresa poderá obter descontos do fornecedor, dependendo da forma que irá pagar os produtos
     e é livre para comprar a quantidade de pacotes desejada. Contudo, a empresa possui uma quantia limitada
-    de recursos próprios, pois o capital integralizado pelos sócios no início do negócio é de apenas R$ 50.000
+    de recursos próprios, pois o capital integralizado pelos sócios no início do negócio é de apenas R\$ 50.000
     (depositado em conta bancária).
     """)
     st.write("""
@@ -54,15 +55,15 @@ def mostrar_contexto():
     
     st.subheader("Estratégia de Marketing")
     st.write("""
-    A empresa está considerando duas estratégias de marketing. A Campanha Conservadora envolve um gasto fixo mensal de R$ 5.000,
+    A empresa está considerando duas estratégias de marketing. A Campanha Conservadora envolve um gasto fixo mensal de R\$ 5.000,
     com a gestão das redes sociais sendo feita por uma empresa terceirizada, focando em divulgação digital orgânica.
-    Com essa campanha, espera-se que a demanda esperada a partir da localização escolhida seja 10% maior no mês de fevereiro e
+    Com essa campanha, espera-se que a demanda esperada **a partir da localização escolhida** seja 10% maior no mês de fevereiro e
     no mês de março.
     """)
     st.write("""
-    Outra opção seria a Campanha Agressiva. Nessa campanha, além do gasto fixo mensal de R$ 5.000 e a empresa arcaria com um pagamento
-    de R$ 50.000 no primeiro mês, para impulsionamento e parcerias com influenciadores locais. Com essa estratégia, espera-se que a demanda esperada
-    a partir da localização escolhida seja 20% maior no mês de fevereiro e no mês de março.
+    Outra opção seria a Campanha Agressiva. Nessa campanha, além do gasto fixo mensal de R\$ 5.000 e a empresa arcaria com um pagamento
+    de R\$ 50.000 no primeiro mês, para impulsionamento e parcerias com influenciadores locais. Com essa estratégia, espera-se que a demanda esperada
+    **a partir da localização** escolhida seja 20% maior no mês de fevereiro e no mês de março.
     """)
     
     st.subheader("Política de Recebimento dos Clientes")
@@ -71,18 +72,18 @@ def mostrar_contexto():
     a partir das expectativas de demandas das escolhas anteriores (localização e marketing).
     """)
     st.write("""
-    Apenas à vista: essa alternativa não altera as expectativas de vendas e não envolve custos adicionais.
+    **1) Apenas à vista:** essa alternativa não altera as expectativas de vendas e não envolve custos adicionais.
     """)
     st.write("""
-    À vista e no cartão de crédito: essa alternativa produz um aumento de 10% na demanda total. A venda no
+    **2) À vista e no cartão de crédito:** essa alternativa produz um aumento de 10% na demanda total. A venda no
     no cartão de crédito é de apenas 1x. Ou seja, todo o valor vendido é inteiramente recebido no mês seguinte,
     e a administradora do cartão garante o pagamento. Contudo, ela cobra uma taxa de 1% sobre as vendas no cartão e
     é sabido que, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito e o restante (70%) à vista.
     """)
     st.write("""
-    À vista, crédito e boleto: essa alternativa produz um aumento de 15% na demanda total. As condições de venda no cartão
+    **3) À vista, crédito e boleto:** essa alternativa produz um aumento de 15% na demanda total. As condições de venda no cartão
     de crédito são as mesmas da opção "À vista e no cartão de crédito". Já as vendas no boleto serão, todas elas, parceladas em
-    3 parcelas mensais. É sabido que há um risco de que 10% do saldo de contas a receber das vendas no boleto não sejam recebidos e
+    3 parcelas mensais, sendo a primeira recebido 1 mês após a venda. É sabido que há um risco de que 10% do saldo de contas a receber das vendas no boleto não sejam recebidos e
     que, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito, 40% às vendas no boleto e o restante,
     (30%) à vista.
     """)
@@ -90,14 +91,15 @@ def mostrar_contexto():
     st.subheader("Aquisião dos produtos")
     st.write("""
     Os pacotes do café civeta são adquiridos mensalmente estando disponíveis para atender a demanda do mês em que são
-    adquiridos. O preço negociado com o fornecedor da Indonésia é R$ 2.500 por pacote se for à vista, R$ 2.250 por pacote
-    se for pago 30 dias antes do envio e R$ 2.700 por pacote se for parcelado em 3 parcelas. Como a empresa inicia em janeiro,
-    a compra de janeiro não pode ser adiantada. Caso opte por adiantar a mercadoria enviada em fevereiro, o valor pago por ela
-    terá efeito no caixa de janeiro.
+    adquiridos.
+    **Negociação com fornecedor**: O preço negociado com o fornecedor da Indonésia é R\$ 2.500 por pacote se for à vista, R\$ 2.250 por pacote
+    se for pago 30 dias antes do envio e R\$ 2.700 por pacote se for parcelado em 3 parcelas (primeira parcela vencendo 1 mês após a compra).
+    Como a empresa inicia em janeiro, a compra de janeiro não pode ser adiantada. Caso opte por adiantar a mercadoria enviada em fevereiro,
+    o valor pago por ela terá efeito no caixa de janeiro.
     """)
     st.write("""
-    Além do preço negociado com fornecedor, a empresa precisa arcar com custos de importação (transporte e impostos não recuperáveis)
-    que correspondem a R$ 500 por pacote e são sempre pagos à vista, no mês de envio das mercadorias. Por exemplo, se a mercadoria
+    **Custos adicionais**: Além do preço negociado com fornecedor, a empresa precisa arcar com custos de importação (transporte e impostos não recuperáveis)
+    que correspondem a R\$ 500 por pacote e são sempre pagos à vista, no mês de envio das mercadorias. Por exemplo, se a mercadoria
     de fevereiro é adquirida por adiantamento, o efeito no pagamento ao fornecedor ocorre em janeiro, mas o efeito dos custos de importação
     ocorrem em fevereiro. O mesmo vale para o parcelamento. Apenas a quantia referente ao fornecedor é parcelada, os demais custos são sempre à vista.
     """)
@@ -105,18 +107,18 @@ def mostrar_contexto():
     st.subheader("Cheque especial e outras informações")
     st.write("""
     Os gestores possuem liberdade para comprar a quantidade que desejar. Contudo, não possui recursos próprios infinitos. Ao gastar
-    mais do que possui em caixa, a empresa estará utilizando recursos do cheque especial, que está sujeito a uma taxa de juros de 15%.
+    mais do que possui em caixa, a empresa estará utilizando recursos do cheque especial, que está sujeito a uma taxa de juros de 15% ao mês.
     """)
     st.write("""
-    Para todas as operações, os dias são irrelevantes. Ou seja, embora capital próprio seja de R$ 50.000, o budget de janeiro é
-    R$ 50.000 somado aos acrescimos de caixa das operações de janeiro. Sendo assim, o tempo é apenas relevante ao passar de um mês
-    para outro. Sendo assim, a taxa de juros do cheque especial é calculada sobre o saldo negativo do mês em que o caixa tiver negativo,
+    Para todas as operações, os dias são irrelevantes. Ou seja, embora capital próprio seja de R\$ 50.000, o budget de janeiro é
+    R\$ 50.000 mais aos acrescimos de caixa decorrente das operações de janeiro. Portanto, o tempo é apenas relevante ao passar de um mês
+    para outro. Sendo assim, a taxa de juros do cheque especial é calculada sobre o saldo negativo do mês em que o caixa estiver negativo,
     e incorporada a esse saldo. Ou seja, se ao final de janeiro o caixa fechar em -10.000 antes dos juros, o saldo final do caixa de janeiro
-    após o juros será de -11.500.
+    após o juros será de -11.500. O mesmo para os demais meses.
     """)
     
     st.write("""
-    Com base nas informações acima, tome as decisões que MAXIMIZAM O LUCRO DO PRIMEIRO TRIMESTRE da Civeta Nobre Importações.
+    Com base nas informações acima, tome as decisões que **MAXIMIZAM O LUCRO DO PRIMEIRO TRIMESTRE** da Civeta Nobre Importações.
     """)
     
 
