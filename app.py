@@ -73,17 +73,19 @@ def mostrar_escolhas():
         else:
             st.error("Por favor, insira seu nome e e-mail para enviar as escolhas.")
 
-# Função principal
+# Função principal com navegação por botões
 def main():
-    # Barra de navegação lateral
-    menu = ["Contexto", "Escolhas"]  # Opções de navegação
-    escolha = st.radio("Escolha uma seção", menu)  # Barra de navegação lateral
-    
-    if escolha == "Contexto":
-        mostrar_contexto()
-    elif escolha == "Escolhas":
+    # Exibe a seção de contexto
+    mostrar_contexto()
+
+    # Botão "Próximo" para ir para a próxima seção
+    if st.button("Tomar Decisões"):
+        # Exibe a seção de escolhas
         mostrar_escolhas()
 
-# Executando a função principal
+        # Botão "Anterior" para voltar à seção anterior
+        if st.button("Voltar para o Contexto"):
+            mostrar_contexto()
+
 if __name__ == "__main__":
     main()
