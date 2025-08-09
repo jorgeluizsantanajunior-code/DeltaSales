@@ -80,7 +80,7 @@ def mostrar_contexto():
     # Exibindo a tabela no Streamlit
     st.write("**Tabela de Dados da Localização e Mercado**", tabela)
     st.write("""
-    Obs.: A primeira parcela dos móveis é paga em janeiro e do aluguel são pagas em janeiro. Ou seja, o aluguel é pago no mesmo mês em que é utilizado.
+    Obs.: A primeira parcela dos móveis e do aluguel são pagas em janeiro. Ou seja, o aluguel é pago no mesmo mês em que é utilizado.
     """)
     
     st.subheader("Estratégia de Marketing")
@@ -118,10 +118,12 @@ def mostrar_contexto():
     (30%) à vista.
     """)
     
-    st.subheader("Aquisião dos produtos")
+    st.subheader("Aquisição dos produtos")
     st.write("""
     Os pacotes do café civeta são adquiridos mensalmente estando disponíveis para atender a demanda do mês em que são
     adquiridos.
+    """)
+    st.write("""
     **Negociação com fornecedor**: O preço negociado com o fornecedor da Indonésia é R\$ 2.500 por pacote se for à vista, R\$ 2.250 por pacote
     se for pago 30 dias antes do envio e R\$ 2.700 por pacote se for parcelado em 3 parcelas (primeira parcela vencendo 1 mês após a compra).
     Como a empresa inicia em janeiro, a compra de janeiro não pode ser adiantada. Caso opte por adiantar a mercadoria enviada em fevereiro,
@@ -163,7 +165,7 @@ def mostrar_escolhas():
     recebimento = st.selectbox("Escolha a política de recebimento", ["À vista", "Cartão", "Boleto"])
 
     compra1qnt = st.number_input("Quantidade de compras no Mês 1", min_value=0, value=100)
-    compra1pag = st.selectbox("Forma de pagamento para Mês 1", ["À vista", "Parcelado", "Adiantado"])
+    compra1pag = st.selectbox("Forma de pagamento para Mês 1", ["À vista", "Parcelado"])
 
     compra2qnt = st.number_input("Quantidade de compras no Mês 2", min_value=0, value=100)
     compra2pag = st.selectbox("Forma de pagamento para Mês 2", ["À vista", "Parcelado", "Adiantado"])
