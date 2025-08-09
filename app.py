@@ -1,4 +1,20 @@
 import streamlit as st
+import pandas as pd
+
+# Criando os dados da tabela
+dados = {
+    "Localização": ["Serra", "Praia do Canto"],
+    "Aluguel Mensal (R\$)": [5000, 20000],
+    "Investimento em Móveis (R\$)": [60000, 100000],
+    "Vida Útil dos Móveis (anos)": [10, 10],
+    "Condições de Pagamento dos Móveis": ["12 parcelas mensais", "12 parcelas mensais"],
+    "Fatia de Mercado no Mês 1": ["20%", "60%"],
+    "Fatia de Mercado no Mês 2": ["40%", "70%"],
+    "Fatia de Mercado no Mês 3": ["60%", "80%"],
+}
+
+# Criando um DataFrame
+tabela = pd.DataFrame(dados)
 
 # Função para formatar valores
 def fmt(x):
@@ -52,6 +68,11 @@ def mostrar_contexto():
     investimento em móveis mais acessível, mas está afastada do centro, o que pode limitar o acesso ao público. A Praia do Canto, por outro lado,
     possui um aluguel mais caro e um investimento maior em móveis, mas oferece uma localização nobre, próxima ao público-alvo, o que irá atrair mais clientes.
     """)
+    # Exibindo a tabela no Streamlit
+    st.write("### Tabela de Dados da Localização e Mercado", tabela)
+    st.write("""
+    Obs.: A primeira parcela é paga em janeiro.
+    """)
     
     st.subheader("Estratégia de Marketing")
     st.write("""
@@ -75,13 +96,13 @@ def mostrar_contexto():
     **1) Apenas à vista:** essa alternativa não altera as expectativas de vendas e não envolve custos adicionais.
     """)
     st.write("""
-    **2) À vista e no cartão de crédito:** essa alternativa produz um aumento de 10% na demanda total. A venda no
+    **2) À vista e no cartão de crédito:** essa alternativa produz um aumento de 10% na demanda de cada mês (após considerar escolhas de localização e marketing). A venda no
     no cartão de crédito é de apenas 1x. Ou seja, todo o valor vendido é inteiramente recebido no mês seguinte,
     e a administradora do cartão garante o pagamento. Contudo, ela cobra uma taxa de 1% sobre as vendas no cartão e
     é sabido que, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito e o restante (70%) à vista.
     """)
     st.write("""
-    **3) À vista, crédito e boleto:** essa alternativa produz um aumento de 15% na demanda total. As condições de venda no cartão
+    **3) À vista, crédito e boleto:** essa alternativa produz um aumento de 15% na demanda de cada mês (após considerar escolhas de localização e marketing). As condições de venda no cartão
     de crédito são as mesmas da opção "À vista e no cartão de crédito". Já as vendas no boleto serão, todas elas, parceladas em
     3 parcelas mensais, sendo a primeira recebido 1 mês após a venda. É sabido que há um risco de que 10% do saldo de contas a receber das vendas no boleto não sejam recebidos e
     que, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito, 40% às vendas no boleto e o restante,
