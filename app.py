@@ -23,6 +23,8 @@ dados = {
 # Criando um DataFrame
 tabela = pd.DataFrame(dados)
 
+tabela = tabela.set_index("Categoria")
+
 # Função para formatar valores
 def fmt(x):
     return format(x, ",.2f")
@@ -76,9 +78,9 @@ def mostrar_contexto():
     possui um aluguel mais caro e um investimento maior em móveis, mas oferece uma localização nobre, próxima ao público-alvo, o que irá atrair mais clientes.
     """)
     # Exibindo a tabela no Streamlit
-    st.write("### Tabela de Dados da Localização e Mercado", tabela)
+    st.write("**Tabela de Dados da Localização e Mercado**", tabela)
     st.write("""
-    Obs.: A primeira parcela é paga em janeiro.
+    Obs.: A primeira parcela dos móveis é paga em janeiro e do aluguel são pagas em janeiro. Ou seja, o aluguel é pago no mesmo mês em que é utilizado.
     """)
     
     st.subheader("Estratégia de Marketing")
