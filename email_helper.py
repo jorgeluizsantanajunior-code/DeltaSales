@@ -102,11 +102,110 @@ def generate_email_body(nome, local, marketing, recebimento,
 
     # Só alguns exemplos de textos
     header = [f"Nome do aluno: {nome}", "Você escolheu as seguintes operações:", "", "Operações de Janeiro"]
-    q11 = f"1. Em janeiro/20x1, foi integralizado o capital social no valor de R$ {fmt(p.capital)}"
-    q12 = f"2. Em janeiro/20x1, foi pago R$ {fmt(p.alpraia if loc=='praiadocanto' else p.alserra)} de aluguel"
-    q13 = f"3. Em janeiro/20x1, foi pago R$ {fmt(despmkt[0])} em marketing"
+    q11 = f"Em janeiro/20x1, foi integralizado, por meio de depósito em conta bancária, o capital social no valor de R$ {fmt(p.capital)}"
+    q12 = f"Em janeiro/20x1, foi pago o valor mensal de R$ {fmt(p.alpraia if loc=='praiadocanto' else p.alserra)} referente ao direito de uso do imóvel em janeiro/20x1."
+    q13 = f"Em janeiro/20x1, foi pago o valor mensal de R$ {fmt(despmkt[0])} referente a gastos com marketing."
+    q14 = ("Em janeiro/20x1, foram adquiridos móveis com vida útil de 10 anos no valor total de R$ "
+           f"{fmt(p.movpraia if loc=='praiadocanto' else p.movserra)} a serem pagos em 3 parcelas mensais com vencimento no fim de cada mês iniciando em janeiro de 20x1.")
+    val15 = (p.pc*compra1qnt if norm(compra1pag)=="avista"
+             else p.pc*p.jurcomp*compra1qnt if norm(compra1pag)=="parcelado"
+             else p.pc*p.descomp*compra1qnt)
+    pag15 = ("à vista" if norm(compra1pag)=="avista"
+             else "parcelado em 3 parcelas mensais" if norm(compra1pag)=="parcelado"
+             else "adiantado")
+    q15 = (f"Em janeiro/20x1, foram adquiridos {compra1qnt} pacotes do café civeta sendo R$ {fmt(val15)} {pag15} "
+           f"e R$ {fmt(compra1qnt*p.transp)} pagos à vista pelos custos de transporte e impostos de importação não recuperáveis.")
+    rec16 = ("todo o valor recebido à vista" if rec=="avista"
+             else "70% recebido à vista e 30% no cartão de crédito a ser recebido no mês subsequente" if rec=="cartao"
+             else "30% recebido à vista, 30% no cartão de crédito e 40% no boleto parcelado em 3x sem juros")
+    extra16 = ("" if rec=="avista"
+               else f" Além disso, sabe-se que a administradora do cartão de crédito cobra uma taxa de {Params.taxacart*100:.0f}% pelas vendas no cartão"
+               if rec=="cartao"
+               else f" Além disso, sabe-se que a administradora do cartão de crédito cobra uma taxa de {Params.taxacart*100:.0f}% pelas vendas no cartão e que há um risco de inandimplência de {Params.taxainad*100:.0f}% para o saldo de contas a receber no boleto.")
+    q16 = (f"Em janeiro/20x1, foram vendidos {venda[0]} pacotes do café civeta totalizando R$ {fmt(receita[0])}. "
+           f"Sendo {rec16}.{extra16}")
+    q17 = (f"Em janeiro/20x1 foi pago o valor de R$ "
+           f"{fmt(round((p.movpraia if loc=='praiadocanto' else p.movserra)/3))} referente à primeira parcela dos móveis adquiridos.")
+    q18 = (f"Em janeiro/20x1 foi adiantado ao fornecedor o valor de R$ {fmt(compra2qnt*p.pc*p.descomp)} referente a produtos ainda não entregues."
+           if norm(compra2pag)=="adiantado" else "")
 
-    return "\n".join(header + [q11, q12, q13])
+    # Fevereiro
+    q21 = (f"Em fevereiro/20x1, foi pago o valor mensal de R$ {fmt(p.alpraia if loc=='praiadocanto' else p.alserra)} referente ao direito de uso do imóvel em fevereiro/20x1.")
+    q22 = (f"Em fevereiro/20x1, foi pago o valor mensal de R$ {fmt(Params.despmktfx)} referente a gastos com marketing.")
+    q23 = ("" if rec=="avista"
+           else f"Em fevereiro/20x1, foi recebido o valor R$ {fmt(receita[0]*Params.vendacart*(1-Params.taxacart))}, referente às vendas no cartão de crédito do mês anterior."
+           if rec=="cartao"
+           else f"Em fevereiro/20x1, foi recebido o valor R$ {fmt(receita[0]*Params.vendacart*(1-Params.taxacart))}, referente às vendas no cartão de crédito do mês anterior e R$ {fmt(receita[0]*Params.vendaboleto*(1-Params.taxainad)/3)} referente às vendas no boleto do mês anterior.")
+    val24 = (p.pc*compra2qnt if norm(compra2pag)=="avista"
+             else p.pc*p.jurcomp*compra2qnt if norm(compra2pag)=="parcelado"
+             else p.pc*p.descomp*compra2qnt)
+    pag24 = ("à vista" if norm(compra2pag)=="avista"
+             else "parcelado em 3 parcelas mensais" if norm(compra2pag)=="parcelado"
+             else "abatido de adiantamento feito no mês anterior")
+    q24 = (f"Em fevereiro/20x1, foram adquiridos {compra2qnt} pacotes do café civeta sendo R$ {fmt(val24)} {pag24} "
+           f"e R$ {fmt(compra2qnt*p.transp)} pagos à vista pelos custos de transporte e impostos de importação não recuperáveis.")
+    q25 = (f"Em fevereiro/20x1, foram vendidos {venda[1]} pacotes do café civeta totalizando R$ {fmt(receita[1])}. "
+           f"Sendo {rec16}.{extra16}")
+    q26 = (f"Em fevereiro/20x1 foi pago o valor de R$ "
+           f"{fmt(round((p.movpraia if loc=='praiadocanto' else p.movserra)/3))} referente à segunda parcela dos móveis adquiridos.")
+    q27 = (f"Em fevereiro/20x1 foi adiantado ao fornecedor o valor de R$ {fmt(compra3qnt*p.pc*p.descomp)} referente a produtos ainda não entregues."
+           if norm(compra3pag)=="adiantado" else "")
+    q28 = (f"Em fevereiro/20x1 foi pago ao fornecedor o valor de R$ {fmt((Params.pc*Params.jurcomp*compra1qnt)/3)} referente a mercadorias anteriormente entregues."
+           if norm(compra1pag)=="parcelado" else "")
+
+    # Março
+    q31 = (f"Em março/20x1, foi pago o valor mensal de R$ {fmt(p.alpraia if loc=='praiadocanto' else p.alserra)} referente ao direito de uso do imóvel em março/20x1.")
+    q32 = (f"Em março/20x1, foi pago o valor mensal de R$ {fmt(Params.despmktfx)} referente a gastos com marketing.")
+    q33 = ("" if rec=="avista"
+           else f"Em março/20x1, foi recebido o valor R$ {fmt(receita[1]*Params.vendacart*(1-Params.taxacart))}, referente às vendas no cartão de crédito do mês anterior."
+           if rec=="cartao"
+           else f"Em março/20x1, foi recebido o valor R$ {fmt(receita[1]*Params.vendacart*(1-Params.taxacart))}, referente às vendas no cartão de crédito do mês anterior e R$ {fmt(receita[0]*Params.vendaboleto*(1-Params.taxainad)/3 + receita[1]*Params.vendaboleto*(1-Params.taxainad)/3)} referente às vendas no boleto dos meses anteriores.")
+    val34 = (p.pc*compra3qnt if norm(compra3pag)=="avista"
+             else p.pc*p.jurcomp*compra3qnt if norm(compra3pag)=="parcelado"
+             else p.pc*p.descomp*compra3qnt)
+    pag34 = ("à vista" if norm(compra3pag)=="avista"
+             else "parcelado em 3 parcelas mensais" if norm(compra3pag)=="parcelado"
+             else "abatido de adiantamento feito no mês anterior")
+    q34 = (f"Em março/20x1, foram adquiridos {compra3qnt} pacotes do café civeta sendo R$ {fmt(val34)} {pag34} "
+           f"e R$ {fmt(compra3qnt*p.transp)} pagos à vista pelos custos de transporte e impostos de importação não recuperáveis.")
+    q35 = (f"Em março/20x1, foram vendidos {venda[2]} pacotes do café civeta totalizando R$ {fmt(receita[2])}. "
+           f"Sendo {rec16}.{extra16}")
+    q36 = (f"Em março/20x1 foi pago o valor de R$ "
+           f"{fmt(round((p.movpraia if loc=='praiadocanto' else p.movserra)/3))} referente à terceira parcela dos móveis adquiridos.")
+    q37 = (f"Em março/20x1 foi pago ao fornecedor o valor de R$ {fmt((Params.pc*Params.jurcomp*compra1qnt)/3 + (Params.pc*Params.jurcomp*compra2qnt)/3 if norm(compra2pag)=='parcelado' else (Params.pc*Params.jurcomp*compra1qnt)/3)} referente a mercadorias anteriormente entregues."
+           if (norm(compra1pag)=="parcelado" or norm(compra2pag)=="parcelado") else "")
+
+    # Coletar, filtrar vazios e numerar com seções
+    jan = [q11, q12, q13, q14, q15, q16, q17, q18]
+    fev = [q21, q22, q23, q24, q25, q26, q27, q28]
+    mar = [q31, q32, q33, q34, q35, q36, q37]
+
+    def enumerate_ops(items: List[str], start_idx: int) -> Tuple[List[str], int]:
+        out = []
+        idx = start_idx
+        for it in items:
+            if it and it.strip():
+                out.append(f"{idx}. {it.strip()}")
+                idx += 1
+        return out, idx
+
+    header = [f"Nome do aluno: {nome}", "Você escolheu as seguintes operações:"]
+
+    body_lines = header[:]
+    n = 1
+    body_lines.append("")
+    body_lines.append("Operações de Janeiro")
+    ops, n = enumerate_ops(jan, n); body_lines.extend(ops)
+
+    body_lines.append("")
+    body_lines.append("Operações de Fevereiro")
+    ops, n = enumerate_ops(fev, n); body_lines.extend(ops)
+
+    body_lines.append("")
+    body_lines.append("Operações de Março")
+    ops, n = enumerate_ops(mar, n); body_lines.extend(ops)
+
+    return "\n".join(body_lines)
 
 # ---------------------------------
 # Função de envio de e-mail
