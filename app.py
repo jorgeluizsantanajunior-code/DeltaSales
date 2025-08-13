@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from email_helper import gerar_corpo_email, enviar_email
+from email_helper import enviar_email
 
 # Criando os dados da tabela (agora com as localizações como colunas)
 dados = {
