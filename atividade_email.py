@@ -68,22 +68,22 @@ def calcular_demanda(local: str, marketing: str, recebimento: str) -> List[int]:
     rec = norm(recebimento)
 
     # 1) Base por localização
-    if loc == "serra":
+    if loc == "Serra":
         base_vendas = [0.2, 0.4, 0.6]
     else:  # "praiadocanto"
         base_vendas = [0.6, 0.7, 0.8]
     base_vendas = [x*100 for x in base_vendas]
 
     # 2) Fator marketing
-    if mkt == "conservador":
+    if mkt == "Conservador":
         fator_marketing = [1, 1.1, 1.1]
     else:  # "agressivo"
         fator_marketing = [1, 1.2, 1.2]
 
     # 3) Fator recebimento
-    if rec == "avista":
+    if rec == "À vista":
         fator_receb = 1.0
-    elif rec == "cartao":
+    elif rec == "Cartão":
         fator_receb = 1.1
     else:  # "boleto"
         fator_receb = 1.15
@@ -94,9 +94,9 @@ def calcular_demanda(local: str, marketing: str, recebimento: str) -> List[int]:
 def calcular_custos_unitarios(p: Params, compra1pag: str, compra2pag: str, compra3pag: str) -> List[float]:
     def custo(pag: str) -> float:
         pag = norm(pag)
-        if pag == "adiantado":
+        if pag == "Adiantado":
             return p.pc * p.descomp
-        elif pag == "avista":
+        elif pag == "À vista":
             return p.pc
         else:  # parcelado
             return p.pc * p.jurcomp
@@ -108,12 +108,12 @@ def calcular_fluxo_caixa(p: Params, local: str, marketing: str, recebimento: str
     mkt = norm(marketing)
     rec = norm(recebimento)
 
-    if loc == "serra":
+    if loc == "Serra":
         caixa_local = [-(p.alserra + p.movserra/3)]*3
     else:
         caixa_local = [-(p.alpraia + p.movpraia/3)]*3
 
-    if mkt == "conservador":
+    if mkt == "Conservador":
         caixa_marketing = [-p.despmktfx]*3
     else:  # agressivo
         caixa_marketing = [-(p.despmktfx+p.despmktadc), -p.despmktfx, -p.despmktfx]
@@ -123,9 +123,9 @@ def calcular_fluxo_caixa(p: Params, local: str, marketing: str, recebimento: str
     taxacart = p.taxacart
     taxainad = p.taxainad
 
-    if rec == "avista":
+    if rec == "À vista":
         receb = receita[:]
-    elif rec == "cartao":
+    elif rec == "Cartão":
         receb = [receita[i]*(1-vendacart) + shift_right([receita[j]*vendacart for j in range(3)])[i]*(1-taxacart) for i in range(3)]
     else:  # boleto
         part_cartao = shift_right([receita[j]*vendacart for j in range(3)])
@@ -201,7 +201,7 @@ def generate_email_body(
     cmv = [compras[0] - estoque1, estoque1 + compras[1] - estoque2, estoque2 + compras[2] - estoque3]
 
     # Despesas
-    if loc == "serra":
+    if loc == "Serra":
         aluguel = [p.alserra]*3
         deprec = [p.movserra/p.vuserra]*3
     else:
@@ -210,7 +210,7 @@ def generate_email_body(
 
     # Cartão (não usado diretamente nos textos, mas calculado como no R)
     despcartao = [0, 0, 0]
-    if rec in ("cartao", "boleto"):
+    if rec in ("Cartão", "Boleto"):
         despcartao = [r*p.vendacart*p.taxacart for r in receita]
 
     # Recebimentos a prazo
@@ -237,19 +237,19 @@ def generate_email_body(
 
     pagavista = [q*p.pc for q in qnts]
     for i, pag in enumerate([compra1pag, compra2pag, compra3pag]):
-        if norm(pag) != "avista":
+        if norm(pag) != "À vista":
             pagavista[i] = 0
 
     pagadiant = [q*p.pc*p.descomp for q in qnts]
     for i, pag in enumerate([compra1pag, compra2pag, compra3pag]):
-        if norm(pag) != "adiantado":
+        if norm(pag) != "Adiantado":
             pagadiant[i] = 0
     # desloca para frente (pago antes)
     pagadiant = [pagadiant[1], pagadiant[2], 0]
 
     pagparc_total = [q*p.pc*p.jurcomp for q in qnts]
     for i, pag in enumerate([compra1pag, compra2pag, compra3pag]):
-        if norm(pag) != "parcelado":
+        if norm(pag) != "Parcelado":
             pagparc_total[i] = 0
     pagparc = [0, 0, 0]
     # duas últimas parcelas nos dois meses seguintes ao mês da compra
