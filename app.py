@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from email_helper import enviar_email
+from email_helper import generate_email_body, enviar_email
 
 # Criando os dados da tabela (agora com as localizações como colunas)
 dados = {
@@ -187,7 +187,19 @@ if st.button("Enviar escolhas"):
         Compras Mês 2: {compra2qnt} pacotes, forma de pagamento {compra2pag}
         Compras Mês 3: {compra3qnt} pacotes, forma de pagamento {compra3pag}
         """
-        enviar_email(email)
+        corpo = generate_email_body(
+            nome=nome,
+            local=local,
+            marketing=marketing,
+            recebimento=recebimento,
+            compra1pag=compra1pag,
+            compra2pag=compra2pag,
+            compra3pag=compra3pag,
+            compra1qnt=compra1qnt,
+            compra2qnt=compra2qnt,
+            compra3qnt=compra3qnt,
+        )
+        enviar_email(destinatario_aluno=email, corpo=corpo)
         st.write(resultado)
         st.success("As suas escolhas foram registradas!")
     else:
