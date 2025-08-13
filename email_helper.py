@@ -377,16 +377,16 @@ def enviar_email(destinatario_aluno: str):
     """
     # ===== SUBSTITUA estes nomes se no seu app.py forem diferentes =====
     # (ex.: nome = st.session_state["nome"], etc.)
-    nome = "jorge"          # já existente no seu app.py
-    local = "Serra"
-    marketing = "Conservador"
-    recebimento = "Boleto"
-    compra1pag = "Á vista"
-    compra2pag = "Á vista"
-    compra3pag = "Á vista"
-    compra1qnt = 100
-    compra2qnt = 100
-    compra3qnt = 100
+    nome = nome          # já existente no seu app.py
+    local = local
+    marketing = marketing
+    recebimento = recebimento
+    compra1pag = compra1pag
+    compra2pag = compra2pag
+    compra3pag = compra3pag
+    compra1qnt = compra1qnt
+    compra2qnt = compra2qnt
+    compra3qnt = compra3qnt
     # ===================================================================
 
     corpo = generate_email_body(
