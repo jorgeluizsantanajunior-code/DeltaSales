@@ -114,16 +114,16 @@ def generate_email_body(nome, local, marketing, recebimento,
 def enviar_email(destinatario_aluno):
     # aqui você define os valores
     corpo = generate_email_body(
-        nome=nome,
-        local=local,
-        marketing=marketing,
-        recebimento=recebimento,
-        compra1pag=compra1pag,
-        compra2pag=compra2pag,
-        compra3pag=compra3pag,
-        compra1qnt=compra1qnt,
-        compra2qnt=compra2qnt,
-        compra3qnt=compra3qnt
+        nome="Maria Silva",
+        local="Praia do Canto",
+        marketing="Agressivo",
+        recebimento="Boleto",
+        compra1pag="À vista",
+        compra2pag="Parcelado",
+        compra3pag="Adiantado",
+        compra1qnt=120,
+        compra2qnt=150,
+        compra3qnt=180
     )
 
     remetente = os.getenv("EMAIL")
