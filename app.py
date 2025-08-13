@@ -177,7 +177,7 @@ email = st.text_input("E-mail do aluno (apenas 1 email)")
 
 # 1) Monte o corpo a partir dos inputs do app
 corpo = gerar_corpo_email(
-    nome=nome_aluno,
+    nome=nome,
     local=local,
     marketing=marketing,
     recebimento=recebimento,
