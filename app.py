@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from email_helper import enviar_email
 
 # Criando os dados da tabela (agora com as localizações como colunas)
 dados = {
@@ -187,7 +188,7 @@ def mostrar_escolhas():
             Compras Mês 2: {compra2qnt} pacotes, forma de pagamento {compra2pag}
             Compras Mês 3: {compra3qnt} pacotes, forma de pagamento {compra3pag}
             """
-            
+            enviar_email(email)
             st.write(resultado)
             st.success("As suas escolhas foram registradas!")
         else:
