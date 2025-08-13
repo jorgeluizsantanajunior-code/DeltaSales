@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from email_helper import enviar_email
+from email_helper import gerar_corpo_email, enviar_email
 
 # Criando os dados da tabela (agora com as localizações como colunas)
 dados = {
@@ -175,6 +175,21 @@ compra3pag = st.selectbox("Forma de pagamento para Mês 3", ["À vista", "Parcel
 nome = st.text_input("Nome do(s) aluno(s)")
 email = st.text_input("E-mail do aluno (apenas 1 email)")
 
+# 1) Monte o corpo a partir dos inputs do app
+corpo = gerar_corpo_email(
+    nome=nome_aluno,
+    local=local,
+    marketing=marketing,
+    recebimento=recebimento,
+    compra1pag=compra1pag,
+    compra2pag=compra2pag,
+    compra3pag=compra3pag,
+    compra1qnt=compra1qnt,
+    compra2qnt=compra2qnt,
+    compra3qnt=compra3qnt,
+    # params=Params(...)  # opcional, se quiser customizar preços/taxas
+)
+
 if st.button("Enviar escolhas"):
     if nome and email:
         resultado = f"""
@@ -186,7 +201,7 @@ if st.button("Enviar escolhas"):
         Compras Mês 2: {compra2qnt} pacotes, forma de pagamento {compra2pag}
         Compras Mês 3: {compra3qnt} pacotes, forma de pagamento {compra3pag}
         """
-        enviar_email(email)
+        enviar_email(destinatario_aluno=email, corpo=corpo)
         st.write(resultado)
         st.success("As suas escolhas foram registradas!")
     else:
