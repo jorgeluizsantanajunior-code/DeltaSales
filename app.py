@@ -142,7 +142,7 @@ são pagos em janeiro.
 
 st.subheader("Cheque especial e outras informações")
 st.write("""
-Os gestores possuem liberdade para comprar a quantidade que desejar. Contudo, não possui recursos próprios infinitos. Ao gastar
+O gestor possui liberdade para comprar a quantidade que desejar. Contudo, não possui recursos próprios infinitos. Ao gastar
 mais do que possui em caixa, a empresa estará utilizando recursos do cheque especial, que está sujeito a uma taxa de juros de 15% ao mês.
 """)
 st.write("""
