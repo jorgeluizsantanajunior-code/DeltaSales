@@ -463,6 +463,7 @@ def generate_email_body(
            f"{fmt(round((p.movpraia if loc=='praiadocanto' else p.movserra)/3))} referente à primeira parcela dos móveis adquiridos.")
     q18 = (f"Em janeiro/20x1 foi adiantado ao fornecedor o valor de R$ {fmt(compra2qnt*p.pc*p.descomp)} referente a produtos ainda não entregues."
            if norm(compra2pag)=="adiantado" else "")
+    q19 = (f"Em janeiro/20x1, foi cobrado R$ {fmt(despfin[0])} de juros do cheque especial")
 
     # Fevereiro
     q21 = (f"Em fevereiro/20x1, foi pago o valor mensal de R$ {fmt(p.alpraia if loc=='praiadocanto' else p.alserra)} referente ao direito de uso do imóvel em fevereiro/20x1.")
@@ -487,6 +488,7 @@ def generate_email_body(
            if norm(compra3pag)=="adiantado" else "")
     q28 = (f"Em fevereiro/20x1 foi pago ao fornecedor o valor de R$ {fmt((p.pc*p.jurcomp*compra1qnt)/3)} referente a mercadorias anteriormente entregues."
            if norm(compra1pag)=="parcelado" else "")
+    q29 = (f"Em fevereiro/20x1, foi cobrado R$ {fmt(despfin[1])} de juros do cheque especial")
 
     # Março
     q31 = (f"Em março/20x1, foi pago o valor mensal de R$ {fmt(p.alpraia if loc=='praiadocanto' else p.alserra)} referente ao direito de uso do imóvel em março/20x1.")
@@ -509,11 +511,12 @@ def generate_email_body(
            f"{fmt(round((p.movpraia if loc=='praiadocanto' else p.movserra)/3))} referente à terceira parcela dos móveis adquiridos.")
     q37 = (f"Em março/20x1 foi pago ao fornecedor o valor de R$ {fmt((p.pc*p.jurcomp*compra1qnt)/3 + (p.pc*p.jurcomp*compra2qnt)/3 if norm(compra2pag)=='parcelado' else (p.pc*p.jurcomp*compra1qnt)/3)} referente a mercadorias anteriormente entregues."
            if (norm(compra1pag)=="parcelado" or norm(compra2pag)=="parcelado") else "")
+    q38 = (f"Em março/20x1, foi cobrado R$ {fmt(despfin[2])} de juros do cheque especial")
 
     # --- Coleta, subtítulos e numeração contínua
-    jan = [q11, q12, q13, q14, q15, q16, q17, q18]
-    fev = [q21, q22, q23, q24, q25, q26, q27, q28]
-    mar = [q31, q32, q33, q34, q35, q36, q37]
+    jan = [q11, q12, q13, q14, q15, q16, q17, q18, q19]
+    fev = [q21, q22, q23, q24, q25, q26, q27, q28, q29]
+    mar = [q31, q32, q33, q34, q35, q36, q37, q38]
 
     def enumerate_ops(items: List[str], start_idx: int) -> Tuple[List[str], int]:
         out = []
