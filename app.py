@@ -21,10 +21,10 @@ dados = {
         "Fatia de Mercado no Mês 3"
     ],
     "Serra": [
-        "R$ 5.000", "R$ 60.000", 10, "Parcelado em 12 vezes", "20%", "35%", "50%"
+        "R$ 5.000", "R$ 60.000", 10, "Parcelado em 3 vezes", "20%", "35%", "50%"
     ],
     "Praia do Canto": [
-        "R$ 20.000", "R$ 100.000", 10, "Parcelado em 12 vezes", "60%", "65%", "70%"
+        "R$ 20.000", "R$ 100.000", 10, "Parcelado em 3 vezes", "60%", "65%", "70%"
     ]
 }
 
@@ -98,7 +98,7 @@ Com essa campanha, espera-se que a demanda esperada **a partir da localização 
 no mês de março.
 """)
 st.write("""
-Outra opção seria a Campanha Agressiva. Nessa campanha, além do gasto fixo mensal de R\$ 5.000 e a empresa arcaria com um pagamento
+Outra opção seria a Campanha Agressiva. Nessa campanha, além do gasto fixo mensal de R\$ 5.000, a empresa arcaria com um pagamento
 de R\$ 20.000 no primeiro mês, para impulsionamento e parcerias com influenciadores locais. Com essa estratégia, espera-se que a demanda esperada
 **a partir da localização** escolhida seja 15% maior (ao invés de apenas 10%) no mês de fevereiro e no mês de março.
 """)
@@ -113,33 +113,31 @@ st.write("""
 """)
 st.write("""
 **2) À vista e no cartão de crédito:** essa alternativa produz um aumento de 10% na demanda de cada mês (após considerar escolhas de localização e marketing). A venda no
-no cartão de crédito é de apenas 1x. Ou seja, todo o valor vendido é inteiramente recebido no mês seguinte,
+cartão de crédito é de apenas 1x. Ou seja, todo o valor vendido é inteiramente recebido no mês seguinte,
 e a administradora do cartão garante o pagamento. Contudo, ela cobra uma taxa de 1% sobre as vendas no cartão e
 é sabido que, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito e o restante (70%) à vista.
 """)
 st.write("""
-**3) À vista, crédito e boleto:** essa alternativa produz um aumento de 15% na demanda de cada mês (após considerar escolhas de localização e marketing). As condições de venda no cartão
-de crédito são as mesmas da opção "À vista e no cartão de crédito". Já as vendas no boleto serão, todas elas, parceladas em
-3 parcelas mensais, sendo a primeira recebido 1 mês após a venda. É sabido que há um risco de que 10% do saldo de contas a receber das vendas no boleto não sejam recebidos e
-que, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito, 40% às vendas no boleto e o restante,
+**3) À vista, crédito e boleto:** essa alternativa produz um aumento de 15% (ao invés de apenas 10%) na demanda de cada mês (após considerar escolhas de localização e marketing). As condições de venda no cartão
+de crédito são as mesmas da opção "À vista e no cartão de crédito", ou seja, apenas 1x no crédito e cobra-se uma taxa de 1%. Já as vendas no boleto serão, todas elas, parceladas em
+3 parcelas mensais, sendo a primeira parcela recebida 1 mês após a venda. É sabido que há um risco de que 10% do saldo de contas a receber das vendas no boleto não sejam recebidos. Por fim,
+sabe-se que, nessa política, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito, 40% às vendas no boleto e o restante,
 (30%) à vista.
 """)
 
 st.subheader("Aquisição dos produtos")
 st.write("""
-Os pacotes do café civeta são adquiridos mensalmente estando disponíveis para atender a demanda do mês em que são
+Os pacotes do café civeta são adquiridos mensalmente estando disponíveis para atender à demanda do mês em que são
 adquiridos.
 """)
 st.write("""
 **Negociação com fornecedor**: O preço negociado com o fornecedor da Indonésia é R\$ 2.500 por pacote se for à vista ou R\$ 2.700 por pacote se for parcelado em 3 parcelas (primeira parcela vencendo 1 mês após a compra).
-Como a empresa inicia em janeiro, a compra de janeiro não pode ser adiantada. Caso opte por adiantar a mercadoria enviada em fevereiro,
-o valor pago por ela terá efeito no caixa de janeiro.
 """)
 st.write("""
 **Custos adicionais**: Além do preço negociado com fornecedor, a empresa precisa arcar com custos de importação (transporte e impostos não recuperáveis)
 que correspondem a R\$ 500 por pacote e são sempre pagos à vista, no mês de envio das mercadorias. Por exemplo, se a mercadoria
-de fevereiro é adquirida por adiantamento, o efeito no pagamento ao fornecedor ocorre em janeiro, mas o efeito dos custos de importação
-ocorrem em fevereiro. O mesmo vale para o parcelamento. Apenas a quantia referente ao fornecedor é parcelada, os demais custos são sempre à vista.
+de janeiro é adquirida a prazo, o pagamento dessa compra ao fornecedor só ocorrerá em fevereiro, mas os custos de importação dessa compra
+são pagos em janeiro.
 """)
 
 st.subheader("Cheque especial e outras informações")
@@ -148,7 +146,7 @@ Os gestores possuem liberdade para comprar a quantidade que desejar. Contudo, n�
 mais do que possui em caixa, a empresa estará utilizando recursos do cheque especial, que está sujeito a uma taxa de juros de 15% ao mês.
 """)
 st.write("""
-Para todas as operações, os dias são irrelevantes. Ou seja, embora capital próprio seja de R\$ 50.000, o budget de janeiro é
+Para todas as operações, os dias são irrelevantes. Ou seja, embora o capital próprio seja de R\$ 50.000, o budget de janeiro é
 R\$ 50.000 mais aos acrescimos de caixa decorrente das operações de janeiro. Portanto, o tempo é apenas relevante ao passar de um mês
 para outro. Sendo assim, a taxa de juros do cheque especial é calculada sobre o saldo negativo do mês em que o caixa estiver negativo,
 e incorporada a esse saldo. Ou seja, se ao final de janeiro o caixa fechar em -10.000 antes dos juros, o saldo final do caixa de janeiro
