@@ -220,8 +220,8 @@ class Params:
     descomp: float = 0.9  # fator de desconto na compra (adiantado)
     jurcomp: float = 1.08  # fator de acréscimo na compra (parcelado)
     transp: float = 500  # transporte e impostos não recuperáveis por produto
-    alserra: float = 10000
-    alpraia: float = 50000
+    alserra: float = 5000
+    alpraia: float = 20000
     movserra: float = 60000
     vuserra: float = 120
     movpraia: float = 100000
@@ -309,6 +309,7 @@ def calcular_fluxo_caixa(p: Params, local: str, marketing: str, recebimento: str
 # Geração do corpo do e‑mail (q1..q37)
 # ---------------------------
 def generate_email_body(
+    resultado:str,
     nome: str,
     local: str,
     marketing: str,
@@ -552,6 +553,7 @@ def enviar_email(destinatario_aluno: str):
     >>> caso os nomes sejam diferentes.
     """
     corpo = generate_email_body(
+        resultado=resultado
         nome=nome,
         local=local,
         marketing=marketing,
@@ -594,6 +596,7 @@ if st.button("Enviar escolhas"):
         Compras Mês 3: {compra3qnt} pacotes, forma de pagamento {compra3pag}
         """
         corpo = generate_email_body(
+            resultado=resultado
             nome=nome,
             local=local,
             marketing=marketing,
