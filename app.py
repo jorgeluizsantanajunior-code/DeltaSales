@@ -553,7 +553,7 @@ def enviar_email(destinatario_aluno: str):
     >>> caso os nomes sejam diferentes.
     """
     corpo = generate_email_body(
-        resultado=resultado
+        resultado=resultado,
         nome=nome,
         local=local,
         marketing=marketing,
@@ -596,7 +596,7 @@ if st.button("Enviar escolhas"):
         Compras Mês 3: {compra3qnt} pacotes, forma de pagamento {compra3pag}
         """
         corpo = generate_email_body(
-            resultado=resultado
+            resultado=resultado,
             nome=nome,
             local=local,
             marketing=marketing,
