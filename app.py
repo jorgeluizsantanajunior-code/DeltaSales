@@ -21,10 +21,10 @@ dados = {
         "Fatia de Mercado no Mês 3"
     ],
     "Serra": [
-        "R$ 5.000", "R$ 60.000", 10, "Parcelado em 12 vezes", "20%", "40%", "60%"
+        "R$ 5.000", "R$ 60.000", 10, "Parcelado em 12 vezes", "20%", "35%", "50%"
     ],
     "Praia do Canto": [
-        "R$ 20.000", "R$ 100.000", 10, "Parcelado em 12 vezes", "60%", "70%", "80%"
+        "R$ 20.000", "R$ 100.000", 10, "Parcelado em 12 vezes", "60%", "65%", "70%"
     ]
 }
 
@@ -70,7 +70,7 @@ sendo elas: (1) a localização, (2) a campanha de marketing e (3) a política d
 st.write("""
 Além disso, a empresa poderá obter descontos do fornecedor, dependendo da forma que irá pagar os produtos
 e é livre para comprar a quantidade de pacotes desejada. Contudo, a empresa possui uma quantia limitada
-de recursos próprios, pois o capital integralizado pelos sócios no início do negócio é de apenas R\$ 50.000
+de recursos próprios, pois o capital integralizado pelos sócios no início do negócio é de apenas R\$ 70.000
 (depositado em conta bancária).
 """)
 st.write("""
@@ -99,8 +99,8 @@ no mês de março.
 """)
 st.write("""
 Outra opção seria a Campanha Agressiva. Nessa campanha, além do gasto fixo mensal de R\$ 5.000 e a empresa arcaria com um pagamento
-de R\$ 50.000 no primeiro mês, para impulsionamento e parcerias com influenciadores locais. Com essa estratégia, espera-se que a demanda esperada
-**a partir da localização** escolhida seja 20% maior no mês de fevereiro e no mês de março.
+de R\$ 20.000 no primeiro mês, para impulsionamento e parcerias com influenciadores locais. Com essa estratégia, espera-se que a demanda esperada
+**a partir da localização** escolhida seja 15% maior (ao invés de apenas 10%) no mês de fevereiro e no mês de março.
 """)
 
 st.subheader("Política de Recebimento dos Clientes")
@@ -131,8 +131,7 @@ Os pacotes do café civeta são adquiridos mensalmente estando disponíveis para
 adquiridos.
 """)
 st.write("""
-**Negociação com fornecedor**: O preço negociado com o fornecedor da Indonésia é R\$ 2.500 por pacote se for à vista, R\$ 2.250 por pacote
-se for pago 30 dias antes do envio e R\$ 2.700 por pacote se for parcelado em 3 parcelas (primeira parcela vencendo 1 mês após a compra).
+**Negociação com fornecedor**: O preço negociado com o fornecedor da Indonésia é R\$ 2.500 por pacote se for à vista ou R\$ 2.700 por pacote se for parcelado em 3 parcelas (primeira parcela vencendo 1 mês após a compra).
 Como a empresa inicia em janeiro, a compra de janeiro não pode ser adiantada. Caso opte por adiantar a mercadoria enviada em fevereiro,
 o valor pago por ela terá efeito no caixa de janeiro.
 """)
@@ -174,10 +173,10 @@ compra1qnt = st.number_input("Quantidade de compras no Mês 1", min_value=0, val
 compra1pag = st.selectbox("Forma de pagamento para Mês 1", ["À vista", "Parcelado"])
 
 compra2qnt = st.number_input("Quantidade de compras no Mês 2", min_value=0, value=100)
-compra2pag = st.selectbox("Forma de pagamento para Mês 2", ["À vista", "Parcelado", "Adiantado"])
+compra2pag = st.selectbox("Forma de pagamento para Mês 2", ["À vista", "Parcelado"])
 
 compra3qnt = st.number_input("Quantidade de compras no Mês 3", min_value=0, value=100)
-compra3pag = st.selectbox("Forma de pagamento para Mês 3", ["À vista", "Parcelado", "Adiantado"])
+compra3pag = st.selectbox("Forma de pagamento para Mês 3", ["À vista", "Parcelado"])
 
 nome = st.text_input("Nome do(s) aluno(s)")
 email = st.text_input("E-mail do aluno (apenas 1 email)")
@@ -233,10 +232,10 @@ class Params:
     vendaboleto: float = 0.4
     taxacart: float = 0.01
     taxainad: float = 0.1
-    capital: float = 50000
+    capital: float = 70000
     taxaesp: float = 0.15
     despmktfx: float = 5000
-    despmktadc: float = 10000
+    despmktadc: float = 20000
 
 # ---------------------------
 # Núcleo de cálculo
@@ -248,13 +247,13 @@ def calcular_demanda(local: str, marketing: str, recebimento: str) -> List[int]:
 
     # 1) Base por localização
     if loc == "serra":
-        base_vendas = [0.2, 0.4, 0.6]
+        base_vendas = [0.2, 0.35, 0.50]
     else:  # praia do canto
-        base_vendas = [0.6, 0.7, 0.8]
+        base_vendas = [0.60, 0.65, 0.70]
     base_vendas = [x*100 for x in base_vendas]
 
     # 2) Fator marketing
-    fator_marketing = [1, 1.1, 1.1] if mkt == "conservador" else [1, 1.2, 1.2]
+    fator_marketing = [1, 1.1, 1.1] if mkt == "conservador" else [1, 1.15, 1.15]
 
     # 3) Fator recebimento
     fator_receb = 1.0 if rec == "avista" else 1.1 if rec == "cartao" else 1.15
