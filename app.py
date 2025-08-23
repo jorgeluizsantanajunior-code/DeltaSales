@@ -120,7 +120,7 @@ e a administradora do cartão garante o pagamento. Contudo, ela cobra uma taxa d
 st.write("""
 **3) À vista, crédito e boleto:** essa alternativa produz um aumento de 15% (ao invés de apenas 10%) na demanda de cada mês (após considerar escolhas de localização e marketing). As condições de venda no cartão
 de crédito são as mesmas da opção "À vista e no cartão de crédito", ou seja, apenas 1x no crédito e cobra-se uma taxa de 1%. Já as vendas no boleto serão, todas elas, parceladas em
-3 parcelas mensais, sendo a primeira parcela recebida 1 mês após a venda. É sabido que há um risco de que 10% do saldo de contas a receber das vendas no boleto não sejam recebidos. Por fim,
+3 parcelas mensais, sendo a primeira parcela recebida 1 mês após a venda. É sabido que há um risco de que 15% do saldo de contas a receber das vendas no boleto não sejam recebidos. Por fim,
 sabe-se que, nessa política, do total vendido em cada mês, 30% corresponderão às vendas no cartão de crédito, 40% às vendas no boleto e o restante,
 (30%) à vista.
 """)
@@ -229,7 +229,7 @@ class Params:
     vendacart: float = 0.3
     vendaboleto: float = 0.4
     taxacart: float = 0.01
-    taxainad: float = 0.1
+    taxainad: float = 0.15
     capital: float = 70000
     taxaesp: float = 0.15
     despmktfx: float = 5000
